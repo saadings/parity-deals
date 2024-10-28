@@ -31,8 +31,10 @@ import { ReactNode } from "react";
 const SubscriptionPage = async () => {
   const { userId, redirectToSignIn } = await auth();
   if (userId == null) return redirectToSignIn();
+
   const tier = await getUserSubscriptionTier(userId);
   const productCount = await getProductCount(userId);
+
   const pricingViewCount = await getProductViewCount(
     userId,
     startOfMonth(new Date()),
